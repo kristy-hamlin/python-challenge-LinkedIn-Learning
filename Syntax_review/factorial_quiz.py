@@ -1,3 +1,4 @@
+# Python Essential Training Chapter 2 Challenge:
 # Write a function called factorial() that returns the factorial of the number passed in.
 # If an input is not a positive integer or 0, you should return none. 
 
