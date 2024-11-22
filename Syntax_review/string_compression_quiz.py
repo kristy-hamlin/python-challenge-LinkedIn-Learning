@@ -7,26 +7,49 @@ def encodeString(inputString):
     result = []
     count = 1
     prevChar = inputString[0]
-    print('First char = ' + prevChar)
+    #print('First char = ' + prevChar)
     for i in range(1, len(inputString)):
         char = inputString[i]
-        print('Current char = ' + str(char))
         if char == prevChar:
-            print('Curr char == prev char.')
             count = count + 1
-            print('Incrementing count = ' + str(count))
         else:
-            print('New char detected.')
-            result.append((prevChar, count))
-            print('Appending new tuple to list = ' + str(prevChar) + ', ' + str(count))
+            new = (prevChar, count)
+            result.append(new)
+            #print('Adding tuple: ' + str(new))
             count = 1
             prevChar = char
-            print('Restting count to 1 and setting prevChar = ' + str(prevChar))
+    #Append the last tuple
+    new = (prevChar, count)
+    result.append(new)
     return result
 
-myString = "AAAA"
-encoded = encodeString(myString)
-print(encoded)
+#---------------------------Testing, passed:
+# myString = "AAAABBBCCC"
+# encoded = encodeString(myString)
+# print(encoded)
 
-##Note to self: Leaving off for 11/20/24. Realized that I did not provide a case for reaching the end 
-# of the string. Fix this. 
+# myString = "XXXYZHHH123"
+# encoded = encodeString(myString)
+# print(encoded)
+
+# myString = "__ T Z"
+# encoded = encodeString(myString)
+# print(encoded)
+
+def decodeString(inputList):
+    result = ''
+    for tuple in inputList:
+        char, num = tuple
+        newString = str(char * num)
+        result = result + newString
+    return result
+
+myList = [('a', 5), ('b', 3), ('c', 3)]
+string = decodeString(myList)
+print(string)
+
+myList = [('K', 1), ('R', 2), ('I', 3), ('S', 4), ('T', 5), ('Y', 6)]
+string = decodeString(myList)
+print(string)
+
+#Both functions seem to work properly!
