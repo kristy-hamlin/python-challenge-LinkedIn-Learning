@@ -1,12 +1,12 @@
-#Chapter 5 Challenge: Efficient Primes
-#Write a function called allPrimesUpTo() which returns a list of all primes
-#up to the given input number.
+# Chapter 5 Challenge: Efficient Primes
+# Write a function called allPrimesUpTo() which returns a list of all primes
+# up to the given input number.
 
-#Input: num - a whole positive integer
-#Output: list - a list of all integer primes less than num
+# Input: num - a whole positive integer
+# Output: list - a list of all integer primes less than num
 
-#Make the function efficient by using the list of previously found primes
-#to test for the current prime instead of testing all possible factors. 
+# Make the function efficient by using the list of previously found primes
+# to test for the current prime instead of testing all possible factors. 
 
 def allPrimesUpTo(num):
     primes = [2]
