@@ -89,9 +89,80 @@ def listOfFunctionsDemo():
 # Lambda Functions are one-line functions defined using the keyword lamda.
 # They have many use cases for when you need a short function that does not
 # need to get called again.
-def lamdaDemo(num):
+def lambdaDemo(num):
     print(num)
     newNum = (lambda x: x * 2)(num)
     print(newNum)
 
-lamdaDemo(5)
+def lambdaDemo2(num1, num2):
+    # You CAN name a lambda function and then call it like a regular function
+    # by saving the function in a variable name:
+    lambda_add = lambda x, y: x + y
+    print(lambda_add(num1, num2))
+
+# The first use case of the lambda function we will look at is to provide a function
+# as an argument to the map() function. The map() function accepts a function
+# and an iterable, and applies that function to every member of the iterable. 
+def lambdaUseCaseMapping(method = 'lambda'):
+    nums = list(range(0, 11))
+    print('Nums Before Mapping: ' + str(nums))
+    print('Method = ' + method)
+
+    if method == 'normal':
+        def square(x):
+            return x**2
+        squares = list(map(square, nums))
+    elif method == 'lambda':
+        squares = list(map(lambda x: x**2, nums))
+    else:
+        print('Choose "lambda" or "normal" for method.')
+        return
+    
+    print('Nums after mapping: ' + str(squares))
+
+# The second use case we will look at for lambda functions is used with the filter()
+# function. The filter() function accepts a function that returns true or false, along 
+# with an iterable. Then, it keeps items that return True, and does NOT keep items that
+# return False. 
+# The filter function returns a filter object, so remember to cast it to a list if that
+# is what you want. 
+def lambdaUseCaseFilter():
+    nums = list(range(0, 21))
+    print('nums: ' + str(nums))
+    evens = list(filter(lambda x: x % 2 == 0, nums))
+    print('evens: ' + str(evens))
+
+
+# The third use case we will look at for lambda functions is as the key value
+# for the sorted() function. The sorted() function sorts a list. However,
+# in some cases, you may want it to sort by some feature other than the default. 
+# You can provide a lambda function as the "key" keyword argument to the sorted()
+# function and it will sort by that function. Let's take a look:
+def lambdaUseCaseSorted():
+    # By default, Sorted() will sort a list of words based on alphabetical
+    # order:
+    words = ['hello', 'goodbye', 'happiness', 'family']
+    print('Unsorted: ' + str(words))
+    words = sorted(words)
+    print('Sorted: ' + str(words))
+
+lambdaUseCaseSorted()
+
+def lambdaUseCaseSorted2():
+    # But we can use a lambda function and the key keyword parameter
+    # to have it sort based on a different feature.
+    words = ['Halloween', 'Christmas', 'New Years', 'Valentines', 'St Patrick', 'Veterans Day', 'Independence Day']
+    print('Unsorted: ' + str(words))
+    words = sorted(words, key=lambda x: len(x))
+    print('Sorted: ' + str(words))
+
+def lambdaUseCaseSorted3():
+    # Let's look at another example where we sort a list of tuples.
+    # We will use a lambda function to tell sorted() which element
+    # in each tuple to use as the key.
+    listOfTuples = [(3, 'b', 'hamster'), (1, 'c', 'cat'), (2, 'a', 'dog')]
+    print('Unsorted: ' + str(listOfTuples))
+    listOfTuples = sorted(listOfTuples, key=lambda x: x[1])
+    print('Sorted: ' + str(listOfTuples))
+
+lambdaUseCaseSorted3()
