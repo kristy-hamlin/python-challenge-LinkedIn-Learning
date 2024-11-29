@@ -94,6 +94,8 @@ def handleException(func):
             print('There was some sort of Exception')
     return wrapper
 
+# Now, we use the handleException function as a decorator for other functions,
+# and those checks that we created will happen:
 @handleException
 def causeError6():
     return 1/0
@@ -121,4 +123,17 @@ def raiseError(n):
         raise Exception()
     print(n)
 
-raiseError(0)
+# Custom Exceptions ---------------------------------------------------------
+# Oftentimes, you will need to create your own exception classes that extend
+# the base exception class. They key information is often in the name of that
+# exception class and where you raise it in your code. 
+class CustomException(Exception):
+    pass
+
+# Then, if you reach a point in your code where you want to raise that 
+# exception, you can raise it like so. You can also pass in a message
+# when calling it that will appear in the stack trace:
+def causeError():
+    raise CustomException('You called the causeError() function.')
+
+causeError()
