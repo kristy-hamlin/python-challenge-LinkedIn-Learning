@@ -136,4 +136,19 @@ class CustomException(Exception):
 def causeError():
     raise CustomException('You called the causeError() function.')
 
-causeError()
+
+
+class HTTPException(Exception):
+    statusCode = None
+    message = None
+    def __init__(self):
+        super().__init__(f'Status code: {self.statusCode} and message: {self.message}')
+
+class ServerNotFound(HTTPException):
+    statusCode = 404
+    message = 'Resource not found'
+
+def raiseServerError():
+    raise ServerNotFound()
+
+raiseServerError()

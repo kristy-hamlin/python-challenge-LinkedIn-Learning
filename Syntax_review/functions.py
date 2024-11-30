@@ -31,6 +31,8 @@ def argsDemo(*args):
     print(args)
     print(type(args))
 
+argsDemo(1, 2, "hello", False)
+
 # **kwargs:
 # **kwargs allows you to pass in a variable number of keyword arguments.
 # **kwargs is a dictionary. 
@@ -146,7 +148,7 @@ def lambdaUseCaseSorted():
     words = sorted(words)
     print('Sorted: ' + str(words))
 
-lambdaUseCaseSorted()
+
 
 def lambdaUseCaseSorted2():
     # But we can use a lambda function and the key keyword parameter
@@ -165,4 +167,3 @@ def lambdaUseCaseSorted3():
     listOfTuples = sorted(listOfTuples, key=lambda x: x[1])
     print('Sorted: ' + str(listOfTuples))
 
-lambdaUseCaseSorted3()
