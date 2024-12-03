@@ -34,10 +34,25 @@ def multiprocessingDemo1():
     # processes have their own memory space, so the baby processes cannot write
     # to the dictionary in the parent process. 
 
+# When you create multiple processes, your computer literally uses multiple processes
+# and runs them simultaneously. If we create more than a couple processes and print
+# the results directly from the function so we can see them, you will start to see
+# that the print statements are not coordinated:
+def longSquare2(n):
+    time.sleep(1)
+    print(n**2)
+    print('Finished Computing!')
+
+def multiprocessingDemo2():
+    processes = [Process(target=longSquare2, args=(n,)) for n in range(0,10)]
+    for p in processes:
+        p.start()
+    for p in processes:
+        p.join()
 
 #-----------------------Call functions below-------------------------
 # For multiprocessing, we need to include the following line. This ensures
 # that child processes don't create infinite baby processes because they are
 # running the same main code, if I am understanding correctly. 
 if __name__ == '__main__':
-    multiprocessingDemo1()
+    multiprocessingDemo2()
