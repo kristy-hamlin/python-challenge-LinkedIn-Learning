@@ -125,4 +125,7 @@ def decodeFile(filename):
 encodeFile('wolf.txt', 'result.txt')
 decodeFile('result.txt')
 
-
+# NOTE: I got the program to work for encoding and decoding the files, but I failed the
+# challenge. My encoded file is bigger than the original file. I'll need to think about
+# solutions to that. I'm not sure off the top of my head out JSON strings would have 
+# been able to achieve a smaller file size. 
