@@ -32,9 +32,13 @@ def encodeString(original_string):
             prev_char = char
             counter = 1
     # After the last loop iteration, the last char and counter
-    # should still need to be encoded:
-    encoded = str(counter) + ',' + str(prev_char) + ','
-    encoded_string += encoded
+    # should still need to be encoded.
+    # If the last char is a newline, ignore it:
+    if prev_char == '\n':
+        pass
+    else:
+        encoded = str(counter) + ',' + str(prev_char) + ','
+        encoded_string += encoded
     return encoded_string
 
 def decodeString(encoded_string):
@@ -46,32 +50,35 @@ def decodeString(encoded_string):
     # of the digits in the number:
     i = 0
     while i < len(encoded_string):
+        if i == (len(encoded_string) - 1):
+            # Ignore last newline:
+            break
         # Numbers come first. Get digits up to the comma, could be
         # one or more digits:
         num = ''
         while(encoded_string[i].isdigit()):
-            print('Digit detected: ' + encoded_string[i])
+            # print('Digit detected: ' + encoded_string[i])
             num += encoded_string[i]
             i += 1
 
         # discard comma 1
         if encoded_string[i] != ',':
-            print('Comma expected, not found!')
-            return 'failure'
+            # print('Comma expected, not found!')
+            return 'comma 1 not found failure'
         else:
-            print('Discarding comma 1')
+            # print('Discarding comma 1')
             i += 1
         # convert string to int
         num = int(num)
         char = encoded_string[i]
-        print('Char detected: ' + char)
+        # print('Char detected: ' + char)
         i += 1
         # discard comma 2
         if encoded_string[i] != ',':
-            print('Comma expected, not found!')
-            return 'failure'
+            # print('Comma expected, not found!')
+            return 'comma 2 not found failure'
         else:
-            print('Discarding comma 2')
+            # print('Discarding comma 2')
             i += 1
         decoded = ''
         for c in range(0, num):
@@ -89,14 +96,15 @@ def encodeFile(filename, new_filename):
     with open(filename, 'r') as r:
         lines = r.readlines()
     encoded_lines = []
-    i = 0
     for line in lines:
+        # print('Encoding line: ' + line)
+        # print('Encoded line: ' + encodeString(line))
         encoded_lines.append(encodeString(line))
-        i += 1
     
     with open(new_filename, 'w') as w:
         for line in encoded_lines:
-            w.write(line)
+            # print('Writing line: ' + line)
+            w.write(line + '\n')
 
 
 def decodeFile(filename):
@@ -106,8 +114,11 @@ def decodeFile(filename):
     with open(filename, 'r') as r:
         lines = r.readlines()
     decoded_lines = []
+    i = 1
     for line in lines:
+        # print('Decoding line: ' + str(i) + '-----------')
         decoded_lines.append(decodeString(line))
+        i += 1
     for line in decoded_lines:
         print(line)
 
