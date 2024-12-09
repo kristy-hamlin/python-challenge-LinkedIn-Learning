@@ -30,7 +30,7 @@ class Canvas:
         os.system('cls' if os.name == 'nt' else 'clear')
 
 class TerminalScribe:
-    def __init__(self, canvas, direction):
+    def __init__(self, canvas, direction=180):
         self.direction = direction
         self.canvas = canvas
         self.pos = [0, 0]
@@ -70,7 +70,6 @@ class TerminalScribe:
         self.direction = direction
 
     #~~~~~~~~~ DIRECTIONS: ~~~~~~~~~~~~~~~~~~~~~~~~
-    # Left off copying direction function to start on Challenge 1.
     def up(self):
         pos = [self.pos[0], self.pos[1] - 1]
         if not self.canvas.hitsWall(pos):
@@ -101,6 +100,7 @@ class TerminalScribe:
                 return
         x, y = vector
         pos = [self.pos[0] + x, self.pos[1] - y]
+        # NOTE: This function takes a positive y value to mean up.
         if not self.canvas.hitsWall(pos):
             self.draw(pos)
     
@@ -124,18 +124,8 @@ class TerminalScribe:
             self.move((-1, 1))
 
     def drawEquilateralTriangle(self, base):
-        for i in range(0, base):
-            self.move((1, 0))
-        for i in range(0, base):
-            rad = math.radians(60)
-            x = -(math.cos(rad))
-            y = -(math.sin(rad))
-            self.move((x, y))
-        for i in range(0, base):
-            rad = math.radians(60)
-            x = -(math.cos(rad))
-            y = math.sin(rad)
-            self.move((x, y))
+        pass
+        # This was not working.
 
     def drawSurprise(self, size):
         for i in range(0, size):
